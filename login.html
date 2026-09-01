@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>تسجيل الدخول</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f7f7f7;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.login-page{
+    text-align:center;
+}
+
+.logo{
+    width:170px;
+    margin-bottom:30px;
+}
+
+.login-box{
+    width:460px;
+    background:#fff;
+    padding:40px;
+    border-radius:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+.login-box h2{
+    margin-bottom:35px;
+    color:#333;
+}
+
+.form-group{
+    text-align:right;
+    margin-bottom:20px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+    color:#444;
+}
+
+.input-box{
+    position:relative;
+}
+
+.input-box i{
+    position:absolute;
+    left:15px;
+    top:15px;
+    color:#999;
+}
+
+.input-box input{
+    width:100%;
+    height:48px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:0 45px 0 15px;
+    font-size:15px;
+}
+
+.input-box input:focus{
+    outline:none;
+    border-color:#f26a00;
+}
+
+button{
+    width:100%;
+    height:50px;
+    border:none;
+    border-radius:10px;
+    background:#f44336;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#df3600;
+}
+
+#msg{
+    color:red;
+    margin-top:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-page">
+
+    <img src="/static/logo.png.jpg" class="logo">
+
+    <div class="login-box">
+
+        <h2>تسجيل الدخول</h2>
+
+        <div class="form-group">
+
+            <label>اسم المستخدم</label>
+
+            <div class="input-box">
+                <i class="fa-regular fa-user"></i>
+                <input type="text" id="username" placeholder="اسم المستخدم">
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>كلمة المرور</label>
+
+            <div class="input-box">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="password" placeholder="كلمة المرور">
+            </div>
+
+        </div>
+
+        <button onclick="login()">
+            تسجيل الدخول
+        </button>
+
+        <p id="msg"></p>
+
+    </div>
+
+</div>
+
+<script>
+
+async function login(){
+
+    let username=document.getElementById("username").value;
+    let password=document.getElementById("password").value;
+
+   let response = await fetch("/login", {
+    method: "POST",
+    credentials: "include",
+
+    headers: {
+        "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify({
+        username: username,
+        password: password
+    })
+});
+    if (response.ok) {
+
+    const data = await response.json();
+
+    localStorage.setItem("admin_id", data.admin_id);
+    localStorage.setItem("department_id", data.department_id);
+    localStorage.setItem("username", data.username);
+
+    window.location.href = "/indexx.html";
+
+} else {
+
+    document.getElementById("msg").innerHTML =
+        "اسم المستخدم أو كلمة المرور غير صحيحة";
+}
+
+}
+</script>
+</body>
+</html>

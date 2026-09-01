@@ -1,0 +1,2013 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الرواتب الإلكترونية</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f5f6f8;
+    direction:rtl;
+}
+.header{
+    height:95px;
+    background:white;
+    color:#f26a00;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:32px;
+    font-weight:bold;
+    border-bottom:4px solid #f26a00;
+    position:relative;
+    box-shadow:0 3px 12px rgba(0,0,0,0.08);
+}
+.logo{
+    position:absolute;
+    left:25px;
+    top:10px;
+}
+.logo img{
+    width:130px;
+}
+.logout{
+    position:absolute;
+    left:180px;
+    top:25px;
+}
+.logout button{
+    background:white;
+    color:#8d8b8b;
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:10px 22px;
+    font-size:15px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    direction:ltr;
+}
+.logout button span{
+    direction:rtl;
+}
+.sidebar{
+    position:fixed;
+    right:0;
+    top:95px;
+    width:170px;
+    height:calc(100vh - 95px);
+    background:#8d8b8b;
+    padding-top:25px;
+}
+.sidebar button{
+    width:140px;
+    height:55px;
+    display:block;
+    margin:12px auto;
+    border:none;
+    border-radius:8px;
+    background:#8d8b8b;
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+.sidebar button:hover{
+    background:#f26a00;
+}
+.content{
+    margin-right:190px;
+    margin-left:25px;
+    margin-top:25px;
+    min-height:500px;
+    background:white;
+    border-radius:12px;
+    padding:35px;
+    text-align:center;
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);
+}
+.content h1{
+    margin-top:180px;
+    font-size:34px;
+}
+.content button{
+    background:#f26a00;
+    color:white;
+    border:none;
+    border-radius:8px;
+    width:155px;
+    height:40px;
+    margin:8px;
+    font-size:15px;
+    cursor:pointer;
+}
+.content button:hover{
+    background:#d85d00;
+}
+table{
+    width:90%;
+    margin:25px auto;
+    border-collapse:collapse;
+    background:white;
+}
+th{
+    background:#f26a00;
+    color:white;
+    padding:12px;
+}
+td{
+    padding:10px;
+    border-bottom:1px solid #ddd;
+}
+input, select{
+    width:220px;
+    height:38px;
+    margin:8px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    padding:5px;
+}
+.page-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+.add-btn{
+    background:#f26a00 !important;
+    color:white !important;
+    width:150px !important;
+    height:42px !important;
+    border:none !important;
+    border-radius:8px !important;
+}
+.dept-page{
+    padding:10px;
+}
+.dept-table{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0 8px;
+}
+.dept-table th{
+    background:#f8f8f8;
+    color:#8d8b8b;
+    padding:14px;
+}
+.dept-table td{
+    background:white;
+    padding:14px;
+    border-top:1px solid #eee;
+    border-bottom:1px solid #eee;
+}
+.dept-icon{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    margin-left:12px;
+    font-size:20px;
+}
+.dept-icon i{
+    color:#4b5563;
+}
+.view-btn,.edit-btn,.delete-btn{
+    width:46px !important;
+    height:40px !important;
+    background:white !important;
+    border-radius:8px !important;
+    margin:4px !important;
+    font-size:16px !important;
+}
+.view-btn{
+    color:#8d8b8b !important;
+    border:1px solid #e5e7eb !important;
+}
+.edit-btn{
+    color:#0ea5e9 !important;
+    border:1px solid #bae6fd !important;
+}
+.delete-btn{
+    color:#ef4444 !important;
+    border:1px solid #fecaca !important;
+}
+/* الموظفين */
+.emp-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-direction:row-reverse;
+}
+.emp-head h2{
+    margin:0;
+    font-size:28px;
+    color:#8d8b8b;
+}
+.emp-head p{
+    margin:8px 0 0;
+    color:#8d8b8b;
+}
+.add-emp-btn{
+    background:#f26a00 !important;
+    color:white !important;
+    width:150px !important;
+    height:42px !important;
+}
+.emp-stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-bottom:25px;
+}
+.stat-box{
+    background:white;
+    border:1px solid #eee;
+    border-radius:12px;
+    padding:16px;
+}
+.stat-box strong{display:block;
+    font-size:26px;
+    margin-top:8px;
+}
+.emp-table{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0 8px;
+}
+.emp-table th{
+    background:#f8f8f8;
+    color:#8d8b8b;
+}
+.emp-table td{
+    background:white;
+    border-top:1px solid #eee;
+    border-bottom:1px solid #eee;
+}
+.status-active{
+    background:#dcfce7;
+    color:#16a34a;
+    padding:5px 12px;
+    border-radius:20px;
+}
+.status-off{
+    background:#ffe4e6;
+    color:#e11d48;
+    padding:5px 12px;
+    border-radius:20px;
+}
+.transfer-top{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin:25px 0;
+}
+.alert-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    padding:22px;
+    border-radius:14px;
+    background:white;
+    border:1px solid #eee;
+}
+.alert-card h3{
+    margin:0;
+    font-size:20px;
+}
+.alert-card p{
+    margin:8px 0 0;
+    color:#8d8b8b;
+}
+.alert-card button{
+    background:white !important;
+    width:130px !important;
+    border-radius:8px !important;
+}
+.alert-card.pending{
+    background:#f0fff4;
+    border-color:#86efac;
+}
+.alert-card.pending h3,
+.alert-card.pending .alert-icon,
+.alert-card.pending button{
+    color:#16a34a !important;
+}
+.alert-card.pending button{
+    border:1px solid #86efac !important;
+}
+.alert-card.error{
+    background:#fff7ed;
+    border-color:#fdba74;
+}
+.alert-card.error h3,
+.alert-card.error .alert-icon,
+.alert-card.error button{
+    color:#f26a00 !important;
+}
+.alert-card.error button{
+    border:1px solid #fdba74 !important;
+}
+.alert-icon{
+    font-size:34px;
+}
+/* نموذج طلب النقل */
+.transfer-box{
+    margin-top:30px;
+    background:#fff;
+    border-radius:16px;
+    padding:30px;
+    box-shadow:0 5px 15px #8d8b8b(0,0,0,.08);
+
+    display:flex;
+    align-items:end;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+.transfer-box .form-group{
+    display:flex;
+    flex-direction:column;
+    min-width:260px;
+}
+.transfer-box label{
+    margin-bottom:8px;
+    font-weight:bold;
+    color:#8d8b8b;
+}
+.transfer-box select{
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:15px;
+    outline:none;
+}
+.transfer-box select:focus{
+    border-color:#ff6b00;
+}
+.send-transfer-btn{
+    background:#ff6b00;
+    color:#fff;
+    border:none;
+    padding:13px 28px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:bold;
+    transition:.3s;
+}
+.send-transfer-btn:hover{
+    background:#e65c00;
+}
+.approve-btn {
+    color: white !important;
+    background: #28a745 !important;
+    border: 1px solid #28a745 !important;
+}
+
+.reject-btn {
+    color: white !important;
+    background: #dc3545 !important;
+    border: 1px solid #dc3545 !important;
+}
+</style>
+</style>
+</head>
+<body>
+<div class="header">
+    <div class="logo">
+       <img src="/static/logo.png.jpg" alt="شعار معيار">
+    </div>
+</div>
+</div>
+<div class="logout">
+    <button onclick="logout()">
+        <span>تسجيل الخروج</span>
+        <i class="fa-solid fa-right-from-bracket"></i>
+    </button>
+</div>
+<div class="sidebar">
+    <button onclick="showDepartmentsList()">
+    <i class="fa-solid fa-building"></i>
+    <span>الأقسام</span>
+</button>
+    <button onclick="showEmployees()">
+        <i class="fa-solid fa-users"></i>
+        <span>الموظفين</span>
+    </button>
+    <button onclick="showCards()">
+        <i class="fa-regular fa-credit-card"></i>
+        <span>الكروت</span>
+    </button>
+    <button onclick="showTransfer()">
+        <i class="fa-solid fa-truck"></i>
+        <span>النقل</span>
+    </button>
+    </div>
+<div class="content" id="content">
+    <h1>أهلاً بك</h1>
+</div>
+<script>
+let departments = [];
+let employees = [];
+function showDepartments(){
+    showDepartmentsList();
+}
+function showAddDepartment(){
+    document.getElementById("content").innerHTML = `
+        <h2>إضافة قسم</h2>
+        <input type="text" id="deptName" placeholder="اسم القسم">
+        <button onclick="addDepartment()">إضافة</button>
+    `;
+}
+async function addDepartment() {
+    let name = document.getElementById("deptName").value;
+    if (name.trim() == "") {
+        alert("اكتبي اسم القسم");
+        return;
+    }
+    const response = await fetch("http://127.0.0.1:8000/departments", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            department_name: name
+        })
+    });
+    if (response.ok) {
+        alert("تمت إضافة القسم");
+        document.getElementById("deptName").value = "";
+        showDepartmentsList();
+    } else {
+        alert("حدث خطأ");
+    }
+}
+async function showDepartmentsList() {
+    try {
+        const response = await fetch("http://127.0.0.1:8000/departments");
+        if (!response.ok) {
+            throw new Error("فشل تحميل الأقسام");
+        }
+        const departments = await response.json();
+        const icons = [
+            {
+                icon: "<i class='fa-solid fa-users'></i>",
+                color: "#e8f0ff"
+            },
+            {
+                icon: "<i class='fa-solid fa-chart-column'></i>",
+                color: "#e8f9ee"
+            },
+            {
+                icon: "<i class='fa-solid fa-calculator'></i>",
+                color: "#f4ebff"
+            },
+            {
+                icon: "<i class='fa-solid fa-industry'></i>",
+                color: "#fff2e8"
+            },
+            {
+                icon: "<i class='fa-solid fa-truck'></i>",
+                color: "#edf2f7"
+            },
+            {
+                icon: "<i class='fa-solid fa-cube'></i>",
+                color: "#f7efe8"
+            },
+            {
+                icon: "<i class='fa-solid fa-building'></i>",
+                color: "#eef2ff"
+            }
+        ];
+        let html = `
+            <div class="dept-page">
+                <div class="page-head">
+                    <div>
+                        <h2>الأقسام</h2>
+                        <p>إدارة جميع أقسام الشركة</p>
+                    </div>
+                    <button class="add-btn" onclick="showAddDepartment()">
+                        + إضافة قسم
+                    </button>
+                </div>
+                <table class="dept-table">
+                    <tr>
+                        <th>#</th>
+                        <th>اسم القسم</th>
+                        <th>الإجراءات</th>
+                    </tr>
+        `;
+        if (departments.length === 0) {
+            html += `
+                <tr>
+                    <td colspan="3">لا توجد أقسام</td>
+                </tr>
+            `;
+        }
+        departments.forEach((department, index) => {
+            const design = icons[index % icons.length];
+            html += `
+                <tr>
+                    <td>${department.id}</td>
+                    <td>
+                        <span
+                            class="dept-icon"
+                            style="background:${design.color};"
+                        >
+                            ${design.icon}
+                        </span>
+
+                        <b>${department.department_name}</b>
+                    </td>
+                    <td>
+                        <button
+                            class="edit-btn"
+                            onclick="editDepartment(
+                                ${department.id},
+                                '${department.department_name}'
+                            )"
+                        >
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button
+                            class="delete-btn"
+                            onclick="deleteDepartment(${department.id})"
+                        >
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+        html += `
+                </table>
+            </div>
+        `;
+        document.getElementById("content").innerHTML = html;
+    } catch (error) {
+        document.getElementById("content").innerHTML = `
+            <h2>حدث خطأ في تحميل الأقسام</h2>
+            <p>${error.message}</p>
+        `;
+    }
+}
+async function deleteDepartment(id) {
+    const confirmDelete = confirm("هل أنتِ متأكدة من حذف القسم؟");
+    if (!confirmDelete) {
+        return;
+    }
+    try {
+        const response = await fetch(
+           `http://127.0.0.1:8000/departments/${id}`,
+            {
+                method: "DELETE"
+            }
+        );
+        if (response.ok) {
+            alert("تم حذف القسم بنجاح");
+            await showDepartmentsList();
+        } else {
+            const result = await response.json();
+            alert(result.detail || "حدث خطأ أثناء الحذف");
+        }
+    } catch (error) {
+        console.error(error);
+        alert("تعذر الاتصال بالسيرفر");
+    }
+}
+function editDepartment(index){
+    let departments = JSON.parse(localStorage.getItem("departments")) ||  [];
+    let newName = prompt("عدّل اسم القسم:", departments[index]);
+    if(newName){
+        departments[index] = newName;
+        localStorage.setItem("departments", JSON.stringify(departments));
+        showDepartmentsList();
+    } }
+function showEmployees() {
+    showEmployeesList();
+}
+async function showEmployeesList() {
+    const content = document.getElementById("content");
+    content.innerHTML = "<h2>جاري تحميل الموظفين...</h2>";
+    try {
+       const response = await fetch(
+    "http://127.0.0.1:8000/employees",
+    {
+        credentials: "include"
+    }
+);
+        if (!response.ok) {
+            throw new Error("تعذر تحميل الموظفين");
+        }
+        const employees = await response.json();
+        const departmentsCount = new Set(
+            employees.map(employee => employee.department)
+        ).size;
+        let html = `
+            <div class="emp-page">
+                <div class="emp-head">
+                    <button
+                        class="add-emp-btn"
+                        onclick="showAddEmployee()"
+                    >
+                        + إضافة موظف
+                    </button>
+                    <div>
+                        <h2>عرض الموظفين</h2>
+                        <p>إدارة جميع الموظفين</p>
+                    </div>
+                </div>
+                <div class="emp-stats">
+                    <div class="stat-box">
+                        <div class="stat-text">
+                            <div>إجمالي الموظفين</div>
+                            <strong>${employees.length}</strong>
+                        </div>
+                        <div
+                            class="dept-icon"
+                            style="background:#FFF2E8;"
+                        >
+                            <i
+                                class="fa-solid fa-users"
+                                style="color:#F26A00;"
+                            ></i>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-text">
+                            <div>الأقسام</div>
+                            <strong>${departmentsCount}</strong>
+                        </div>
+                        <div
+                            class="dept-icon"
+                            style="background:#EEF4FF;"
+                        >
+                            <i
+                                class="fa-solid fa-building"
+                                style="color:#3B82F6;"
+                            ></i>
+                        </div>
+                    </div>
+                </div>
+                <table class="emp-table">
+                    <tr>
+                        <th>الاسم</th>
+                        <th>رقم الموظف</th>
+                        <th>القسم</th>
+                        <th>الراتب الأساسي</th>
+                        <th>بدل السكن</th>
+                        <th>بدل النقل</th>
+                        <th>الإجمالي</th>
+                        <th>الإجراءات</th>
+                    </tr>
+        `;
+        if (employees.length === 0) {
+            html += `
+                <tr>
+                    <td colspan="8" style="text-align:center;">
+                        لا يوجد موظفون
+                    </td>
+                </tr>
+            `;
+        }
+        employees.forEach(employee => {
+            const total =
+                Number(employee.total_salary) ||
+                (
+                    Number(employee.basic_salary || 0) +
+                    Number(employee.housing || 0) +
+                    Number(employee.transport || 0)
+                );
+            html += `
+                <tr>
+                    <td>${employee.name}</td>
+                    <td>${employee.employee_number}</td>
+                    <td>${employee.department}</td>
+                    <td>
+                        ${Number(employee.basic_salary || 0).toLocaleString("en-US")}
+                    </td>
+                    <td>
+                        ${Number(employee.housing || 0).toLocaleString("en-US")}
+                    </td>
+                    <td>
+                        ${Number(employee.transport || 0).toLocaleString("en-US")}
+                    </td>
+                    <td>
+                        ${total.toLocaleString("en-US")}
+                    </td>
+                    <td>
+                        <button
+                            class="edit-btn"
+                            onclick="editEmployee(${employee.id})"
+                        >
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+
+                        <button
+                            class="delete-btn"
+                            onclick="deleteEmployee(${employee.id})"
+                        >
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+        html += `
+                </table>
+            </div>
+        `;
+        content.innerHTML = html;
+    } catch (error) {
+        console.error(error);
+        content.innerHTML = `
+            <div style="text-align:center;">
+                <h2>تعذر تحميل الموظفين</h2>
+                <p>تأكدي من تشغيل FastAPI ثم حاولي مرة أخرى.</p>
+
+                <button onclick="showEmployeesList()">
+                    إعادة المحاولة
+                </button>
+            </div>
+        `;
+    }
+}
+async function deleteEmployee(employeeId) {
+    const confirmation = confirm("هل تريدين حذف هذا الموظف؟");
+
+    if (!confirmation) {
+        return;
+    }
+    try {
+        const response = await fetch(
+            `http://127.0.0.1:8000/employees/${employeeId}`,
+            {
+                method: "DELETE"
+            }
+        );
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+
+            throw new Error(
+                errorData.detail || "فشل حذف الموظف"
+            );
+        }
+        alert("تم حذف الموظف بنجاح");
+        showEmployeesList();
+    } catch (error) {
+        console.error(error);
+        alert(error.message);
+    }
+}
+async function editEmployee(employeeId) {
+    try {
+        const response = await fetch(
+            `http://127.0.0.1:8000/employees/${employeeId}`
+        );
+        if (!response.ok) {
+            throw new Error("تعذر تحميل بيانات الموظف");
+        }
+        const employee = await response.json();
+        const newName = prompt(
+            "عدلي اسم الموظف:",
+            employee.name
+        );
+        if (newName === null) {
+            return;
+        }
+        const newNumber = prompt(
+            "عدلي الرقم الوظيفي:",
+            employee.employee_number
+        );
+        if (newNumber === null) {
+            return;
+        }
+        const newDepartment = prompt(
+            "عدلي القسم:",
+            employee.department
+        );
+        if (newDepartment === null) {
+            return;
+        }
+        const newBasic = prompt(
+            "عدلي الراتب الأساسي:",
+            employee.basic_salary
+        );
+        if (newBasic === null) {
+            return;
+        }
+        const newHousing = prompt(
+            "عدلي بدل السكن:",
+            employee.housing
+        );
+
+        if (newHousing === null) {
+            return;
+        }
+        const newTransport = prompt(
+            "عدلي بدل النقل:",
+            employee.transport
+        );
+        if (newTransport === null) {
+            return;
+        }
+        const basicSalary = Number(newBasic) || 0;
+        const housing = Number(newHousing) || 0;
+        const transport = Number(newTransport) || 0;
+        const totalSalary =
+            basicSalary +
+            housing +
+            transport;
+        const updateResponse = await fetch(
+            `http://127.0.0.1:8000/employees/${employeeId}`,
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: newName.trim(),
+                    employee_number: newNumber.trim(),
+                    department: newDepartment.trim(),
+                    basic_salary: basicSalary,
+                    housing: housing,
+                    transport: transport,
+                    total_salary: totalSalary
+                })
+            }
+        );
+        if (!updateResponse.ok) {
+            const errorData =
+                await updateResponse.json().catch(() => ({}));
+
+            throw new Error(
+                errorData.detail || "فشل تعديل الموظف"
+            );
+        }
+        alert("تم تعديل الموظف بنجاح");
+        showEmployeesList();
+    } catch (error) {
+        console.error(error);
+        alert(error.message);
+    }
+}
+async function showAddEmployee() {
+    const content = document.getElementById("content");
+
+    let departmentsOptions = `
+        <option value="">اختر القسم</option>
+    `;
+    try {
+        const response = await fetch(
+            "http://127.0.0.1:8000/departments"
+        );
+        if (response.ok) {
+            const departments = await response.json();
+            departments.forEach(department => {
+                departmentsOptions += `
+                    <option value="${department.department_name}">
+                        ${department.department_name}
+                    </option>
+                `;
+            });
+        }
+    } catch (error) {
+        console.error("تعذر تحميل الأقسام:", error);
+    }
+    content.innerHTML = `
+        <div class="emp-page">
+            <div class="emp-head">
+                <button
+                    class="add-emp-btn"
+                    onclick="showEmployeesList()"
+                >
+                    رجوع
+                </button>
+                <div>
+                    <h2>إضافة موظف</h2>
+                    <p>إدخال بيانات الموظف الجديد</p>
+                </div>
+            </div>
+            <div class="employee-form">
+                <input
+                    type="text"
+                    id="employeeName"
+                    placeholder="اسم الموظف"
+                >
+                <br><br>
+                <input
+                    type="text"
+                    id="employeeNumber"
+                    placeholder="الرقم الوظيفي"
+                >
+                <br><br>
+                <select id="employeeDepartment">
+                    ${departmentsOptions}
+                </select>
+                <br><br>
+                <input
+                    type="number"
+                    id="basicSalary"
+                    placeholder="الراتب الأساسي"
+                    min="0"
+                    oninput="calculateTotal()"
+                >
+                <br><br>
+                <input
+                    type="number"
+                    id="housing"
+                    placeholder="بدل السكن"
+                    min="0"
+                    oninput="calculateTotal()"
+                >
+                <br><br>
+                <input
+                    type="number"
+                    id="transport"
+                    placeholder="بدل النقل"
+                    min="0"
+                    oninput="calculateTotal()"
+                >
+                <br><br>
+                <input
+                    type="text"
+                    id="totalSalary"
+                    placeholder="الإجمالي"
+                    readonly
+                >
+                <br><br>
+                <button
+                    id="saveEmployeeButton"
+                    onclick="addEmployee()"
+                >
+                    إضافة الموظف
+                </button>
+            </div>
+        </div>
+    `;
+}
+async function addEmployee() {
+    const name =
+        document.getElementById("employeeName").value.trim();
+    const employeeNumber =
+        document.getElementById("employeeNumber").value.trim();
+    const department =
+        document.getElementById("employeeDepartment").value;
+    const basicSalary =
+        Number(document.getElementById("basicSalary").value) || 0;
+    const housing =
+        Number(document.getElementById("housing").value) || 0;
+    const transport =
+        Number(document.getElementById("transport").value) || 0;
+    const totalSalary =
+        basicSalary + housing + transport;
+    if (name === "") {
+        alert("اكتبي اسم الموظف");
+        return;
+    }
+    if (employeeNumber === "") {
+        alert("اكتبي الرقم الوظيفي");
+        return;
+    }
+    if (department === "") {
+        alert("اختاري القسم");
+        return;
+    }
+    const response = await fetch(
+        "http://127.0.0.1:8000/employees",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: name,
+                employee_number: employeeNumber,
+                department: department,
+                basic_salary: basicSalary,
+                housing: housing,
+                transport: transport,
+                total_salary: totalSalary
+            })
+        }
+    );
+    if (response.ok) {
+        alert("تمت إضافة الموظف بنجاح");
+        showEmployeesList();
+    } else {
+        const errorData =
+            await response.json().catch(() => ({}));
+        alert(
+            errorData.detail ||
+            "حدث خطأ أثناء إضافة الموظف"
+        );
+    }
+}
+function calculateTotal() {
+    const basicSalary =
+        Number(document.getElementById("basicSalary")?.value) || 0;
+    const housing =
+        Number(document.getElementById("housing")?.value) || 0;
+    const transport =
+        Number(document.getElementById("transport")?.value) || 0;
+    const totalSalary =
+        basicSalary +
+        housing +
+        transport;
+    const totalInput =
+        document.getElementById("totalSalary");
+    if (!totalInput) {
+        return;
+    }
+    totalInput.value =
+        totalSalary === 0
+            ? ""
+            : totalSalary.toLocaleString("en-US");
+}
+function showCards() {
+    document.getElementById("content").innerHTML = `
+        <button onclick="showCardsList()">عرض الكروت</button>
+        <br>
+
+        <button onclick="showCreateCard()">إنشاء كارت</button>
+        <br>
+
+        <button onclick="showUploadExcel()">إضافة السلف والخصم</button>
+        <br>
+        
+   <button type="button" onclick="exportPayroll()"> إنشاء مسير الرواتب</button>
+    `;
+}
+function showUploadExcel() {
+    document.getElementById("content").innerHTML = `
+        <h2>رفع ملف السلف والخصم</h2>
+        <input type="file" id="excelFile" accept=".xlsx">
+        <br><br>
+        <button onclick="uploadExcel()">
+            رفع الملف
+        </button>
+    `;
+}
+async function uploadExcel() {
+    const fileInput = document.getElementById("excelFile");
+
+    if (!fileInput.files.length) {
+        alert("اختاري ملف Excel أولاً");
+        return;
+    }
+    const formData = new FormData();
+    formData.append("file", fileInput.files[0]);
+
+    try {
+        const response = await fetch("/upload-excel", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert(data.message);
+        } else {
+            alert(data.detail || "حدث خطأ");
+        }
+
+    } catch (error) {
+        console.error(error);
+        alert("فشل الاتصال بالسيرفر");
+    }
+}
+function exportPayroll() {
+    window.location.href = "/export-payroll";
+}
+async function showCreateCard() {
+    try {
+        const response = await fetch("/employees");
+        if (!response.ok) {
+            throw new Error("تعذر تحميل الموظفين");
+        }
+        const employees = await response.json();
+        let employeeOptions = `
+            <option value="">اختر الموظف</option>
+        `;
+        employees.forEach(employee => {
+            employeeOptions += `
+                <option
+                    value="${employee.id}"
+                    data-name="${employee.name}"
+                    data-number="${employee.employee_number}"
+                    data-department="${employee.department || ""}"
+                    data-basic="${employee.basic_salary || 0}"
+                    data-housing="${employee.housing || 0}"
+                    data-transport="${employee.transport || 0}"
+                >
+                    ${employee.name}
+                </option>
+            `;
+        });
+        document.getElementById("content").innerHTML = `
+            <h2>إنشاء كارت</h2>
+
+            <select id="cardEmployee" onchange="fillCardEmployeeData()">
+                ${employeeOptions}
+            </select>
+            <br><br>
+            <input type="text" id="cardNumber" placeholder="الرقم الوظيفي" readonly>
+            <br><br>
+            <input type="text" id="cardDepartment" placeholder="القسم" readonly>
+            <br><br>
+            <input type="month" id="cardMonth">
+            <br><br>
+            <input type="number" id="cardBasic" placeholder="الراتب الأساسي">
+            <br><br>
+            <input type="number" id="cardHousing" placeholder="بدل السكن">
+            <br><br>
+            <input type="number" id="cardFood" placeholder="بدل النقل">
+            <br><br>
+            <input type="number" id="cardDiscount" placeholder="الخصم">
+            <br><br>
+            <input type="number" id="cardAdvance" placeholder="السلفة">
+            <br><br>
+            <button onclick="createCard()">إنشاء الكارت</button>
+        `;
+    } catch (error) {
+        console.error(error);
+        alert(error.message);
+    }
+}
+function fillCardEmployeeData() {
+    const select = document.getElementById("cardEmployee");
+    const selectedOption = select.options[select.selectedIndex];
+    if (!selectedOption.value) {
+        document.getElementById("cardNumber").value = "";
+        document.getElementById("cardDepartment").value = "";
+        document.getElementById("cardBasic").value = "";
+        document.getElementById("cardHousing").value = "";
+        document.getElementById("cardFood").value = "";
+        return;
+    }
+    document.getElementById("cardNumber").value =
+        selectedOption.dataset.number || "";
+    document.getElementById("cardDepartment").value =
+        selectedOption.dataset.department || "";
+    document.getElementById("cardBasic").value =
+        selectedOption.dataset.basic || 0;
+    document.getElementById("cardHousing").value =
+        selectedOption.dataset.housing || 0;
+    document.getElementById("cardFood").value =
+        selectedOption.dataset.transport || 0;
+}
+async function createCard() {
+    const employeeSelect = document.getElementById("cardEmployee");
+    const selectedOption =
+        employeeSelect.options[employeeSelect.selectedIndex];
+    const employeeId = Number(employeeSelect.value);
+    const card = {
+        employee_id: employeeId,
+        name: selectedOption.dataset.name || "",
+        employee_number:
+            document.getElementById("cardNumber").value,
+        department:
+            document.getElementById("cardDepartment").value,
+        month:
+            document.getElementById("cardMonth").value,
+        basic_salary:
+            Number(document.getElementById("cardBasic").value) || 0,
+        housing:
+            Number(document.getElementById("cardHousing").value) || 0,
+        transport:
+            Number(document.getElementById("cardFood").value) || 0,
+        discount:
+            Number(document.getElementById("cardDiscount").value) || 0,
+        advance:
+            Number(document.getElementById("cardAdvance").value) || 0
+    };
+    if (!card.employee_id) {
+        alert("اختاري الموظف");
+        return;
+    }
+    if (!card.month) {
+        alert("اختاري الشهر");
+        return;
+    }
+    card.total_salary =
+        card.basic_salary +
+        card.housing +
+        card.transport;
+    card.net_salary =
+        card.total_salary -
+        card.discount -
+        card.advance;
+    try {
+        const response = await fetch("/cards", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(card)
+        });
+        const data = await response.json();
+        if (!response.ok) {
+            let message = "فشل إنشاء الكارت";
+            if (typeof data.detail === "string") {
+                message = data.detail;
+            } else if (Array.isArray(data.detail)) {
+                message = data.detail
+                    .map(item => {
+                        const field =
+                            item.loc[item.loc.length - 1];
+
+                        return `${field}: ${item.msg}`;
+                    })
+                    .join("\n");
+            }
+
+            throw new Error(message);
+        }
+
+        alert("تم إنشاء الكارت بنجاح");
+        showCardsList();
+
+    } catch (error) {
+        console.error(error);
+        alert(error.message);
+    }
+}
+async function showCardsList() {
+    let cards = [];
+
+    try {
+        const response = await fetch("/cards");
+
+        if (!response.ok) {
+            throw new Error("تعذر تحميل الكروت");
+        }
+
+        cards = await response.json();
+
+    } catch (error) {
+        console.error(error);
+        alert(error.message);
+        return;
+    }
+
+    let html = `
+        <h2>عرض الكروت</h2>
+
+        <table border="1">
+            <tr>
+                <th>الاسم</th>
+                <th>عرض</th>
+                <th>حذف</th>
+            </tr>
+    `;
+
+    if (cards.length === 0) {
+        html += `
+            <tr>
+                <td colspan="3">لا توجد كروت</td>
+            </tr>
+        `;
+    }
+
+    cards.forEach(card => {
+        html += `
+            <tr>
+                <td>${card.name}</td>
+
+                <td>
+                    <button onclick="showOneCard(${card.id})">
+                        عرض
+                    </button>
+                </td>
+
+                <td>
+                    <button onclick="deleteCard(${card.id})">
+                        حذف
+                    </button>
+                </td>
+            </tr>
+        `;
+    });
+
+    html += `</table>`;
+
+    document.getElementById("content").innerHTML = html;
+}
+
+
+async function showOneCard(id) {
+    let card;
+
+    try {
+        const response = await fetch(`/cards/${id}`);
+
+        if (!response.ok) {
+            throw new Error("تعذر تحميل الكارت");
+        }
+
+        card = await response.json();
+
+    } catch (error) {
+        console.error(error);
+        alert(error.message);
+        return;
+    }
+
+    let html = `
+        <div style="
+            background:white;
+            width:90%;
+            margin:20px auto;
+            padding:20px;
+            text-align:right;
+            border:1px solid #ccc;
+        ">
+
+            <h3 style="text-align:center;">
+                كرت الموظف
+            </h3>
+
+            <p>
+                <b>الاسم:</b>
+                ${card.name}
+            </p>
+
+            <p>
+                <b>الرقم الوظيفي:</b>
+                ${card.employee_number}
+            </p>
+
+            <p>
+                <b>القسم:</b>
+                ${card.department}
+            </p>
+
+            <p>
+                <b>الشهر:</b>
+                ${card.month}
+            </p>
+
+            <table
+                border="1"
+                style="
+                    width:100%;
+                    border-collapse:collapse;
+                    text-align:center;
+                "
+            >
+
+                <tr>
+                    <th>اليوم</th>
+                    <th>الحالة</th>
+                    <th>نوع الإضافي</th>
+                </tr>
+    `;
+
+    for (let i = 1; i <= 31; i++) {
+        html += `
+            <tr>
+
+                <td>${i}</td>
+
+                <td>
+                    <select>
+                        <option>حاضر</option>
+                        <option>غياب</option>
+                        <option>إجازة</option>
+                        <option>الجمعة</option>
+                    </select>
+                </td>
+
+                <td>
+                    <select>
+                        <option>اختر</option>
+                        <option>ساعة</option>
+                        <option>ثابت</option>
+                        <option>موقع</option>
+                        <option>متر</option>
+                        <option>مواد</option>
+                        <option>سطحة</option>
+                        <option>ونش</option>
+                    </select>
+                </td>
+
+            </tr>
+        `;
+    }
+
+    let basic = Number(card.basic_salary) || 0;
+    let housing = Number(card.housing) || 0;
+    let transport = Number(card.transport) || 0;
+    let discount = Number(card.discount) || 0;
+    let advance = Number(card.advance) || 0;
+
+    let total =
+        card.total_salary !== undefined
+            ? Number(card.total_salary)
+            : basic + housing + transport;
+
+    let net =
+        card.net_salary !== undefined
+            ? Number(card.net_salary)
+            : total - discount - advance;
+
+    html += `
+            </table>
+
+            <hr>
+
+            <div
+                style="
+                    text-align:right;
+                    line-height:35px;
+                    margin-top:15px;
+                "
+            >
+
+                <b>أيام الغياب:</b> 0
+
+                &nbsp;&nbsp;&nbsp;
+
+                <b>الراتب الأساسي:</b>
+                ${basic}
+
+                &nbsp;&nbsp;&nbsp;
+
+                <b>بدل السكن:</b>
+                ${housing}
+
+                &nbsp;&nbsp;&nbsp;
+
+                <b>بدل النقل:</b>
+                ${transport}
+
+                &nbsp;&nbsp;&nbsp;
+
+                <b>الإجمالي:</b>
+                ${total}
+
+                <br><br>
+
+                <b>الخصم:</b>
+                ${discount}
+
+                &nbsp;&nbsp;&nbsp;
+
+                <b>السلفة:</b>
+                ${advance}
+
+                &nbsp;&nbsp;&nbsp;
+
+                <b>الصافي:</b>
+                ${net}
+
+            </div>
+
+            <br>
+
+            <div
+                style="
+                    text-align:center;
+                    margin-top:20px;
+                "
+            >
+
+                <button onclick="editCard(${card.id})">
+                    تعديل
+                </button>
+
+                <button onclick="window.print()">
+                    طباعة
+                </button>
+
+            </div>
+
+        </div>
+    `;
+
+    document.getElementById("content").innerHTML = html;
+}
+
+
+async function deleteCard(id) {
+    let confirmDelete = confirm(
+        "هل أنت متأكد من حذف الكارت؟"
+    );
+
+    if (!confirmDelete) {
+        return;
+    }
+
+    try {
+        const response = await fetch(`/cards/${id}`, {
+            method: "DELETE"
+        });
+
+        if (!response.ok) {
+            const error = await response.json();
+
+            throw new Error(
+                error.detail || "فشل حذف الكارت"
+            );
+        }
+
+        alert("تم حذف الكارت بنجاح");
+        showCardsList();
+
+    } catch (error) {
+        console.error(error);
+        alert(error.message);
+    }
+}
+
+
+async function editCard(id) {
+    let card;
+
+    try {
+        const response = await fetch(`/cards/${id}`);
+
+        if (!response.ok) {
+            throw new Error("تعذر تحميل بيانات الكارت");
+        }
+
+        card = await response.json();
+
+    } catch (error) {
+        console.error(error);
+        alert(error.message);
+        return;
+    }
+
+    let name = prompt(
+        "اسم الموظف",
+        card.name
+    );
+
+    if (name === null) {
+        return;
+    }
+
+    let employeeNumber = prompt(
+        "الرقم الوظيفي",
+        card.employee_number
+    );
+
+    if (employeeNumber === null) {
+        return;
+    }
+
+    let department = prompt(
+        "القسم",
+        card.department
+    );
+
+    if (department === null) {
+        return;
+    }
+
+    let month = prompt(
+        "الشهر",
+        card.month
+    );
+
+    if (month === null) {
+        return;
+    }
+
+    let basic = Number(
+        prompt(
+            "الراتب الأساسي",
+            card.basic_salary || 0
+        )
+    ) || 0;
+
+    let housing = Number(
+        prompt(
+            "بدل السكن",
+            card.housing || 0
+        )
+    ) || 0;
+
+    let transport = Number(
+        prompt(
+            "بدل النقل",
+            card.transport || 0
+        )
+    ) || 0;
+
+    let discount = Number(
+        prompt(
+            "الخصم",
+            card.discount || 0
+        )
+    ) || 0;
+
+    let advance = Number(
+        prompt(
+            "السلفة",
+            card.advance || 0
+        )
+    ) || 0;
+
+    let total = basic + housing + transport;
+    let net = total - discount - advance;
+
+    try {
+        const response = await fetch(`/cards/${id}`, {
+            method: "PUT",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                name: name,
+                employee_number: employeeNumber,
+                department: department,
+                month: month,
+                basic_salary: basic,
+                housing: housing,
+                transport: transport,
+                discount: discount,
+                advance: advance,
+                total_salary: total,
+                net_salary: net
+            })
+        });
+
+        if (!response.ok) {
+            const error = await response.json();
+
+            throw new Error(
+                error.detail || "فشل تعديل الكارت"
+            );
+        }
+
+        alert("تم تعديل الكارت بنجاح");
+        showOneCard(id);
+
+    } catch (error) {
+        console.error(error);
+        alert(error.message);
+    }
+}
+function changeStatus(select, id) {
+    if (select.value === "") {
+        document.getElementById(id).innerText = "حاضر";
+    } else {
+        document.getElementById(id).innerText = select.value;
+    }
+}
+function showTransfer(){
+  showTransferPage(); 
+}
+async function showTransferPage() {
+    let html = `
+    <div class="transfer-page">
+        <div class="page-head">
+            <div>
+                <h2>طلب نقل موظف</h2>
+                <p>تقديم طلب نقل موظف إلى قسم آخر</p>
+            </div>
+        </div>
+
+        <div class="transfer-top">
+
+            <div class="alert-card pending">
+                <div class="alert-icon">
+                    <i class="fa-solid fa-file-circle-check"></i>
+                </div>
+                <div>
+                    <h3>طلبات تحتاج موافقة</h3>
+                    <p id="pendingText">لا يوجد طلب بانتظار الموافقة</p>
+                </div>
+               <button onclick="showPendingRequests()">عرض الطلبات</button>
+            </div>
+        </div>
+
+        <div class="transfer-box">
+
+            <div class="form-group">
+                <label>اختر الموظف</label>
+                <select id="transferEmployee">
+                    <option value="">جاري تحميل الموظفين...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>اختر القسم الجديد</label>
+                <select id="transferDepartment">
+                    <option value="">جاري تحميل الأقسام...</option>
+                </select>
+            </div>
+
+            <button class="send-transfer-btn" onclick="sendTransferRequest()">
+                <i class="fa-solid fa-paper-plane"></i>
+                إرسال طلب
+            </button>
+
+        </div>
+    </div>
+    `;
+
+    document.getElementById("content").innerHTML = html;
+    updatePendingText();
+
+    try {
+        const [employeesResponse, departmentsResponse] = await Promise.all([
+            fetch("http://127.0.0.1:8000/employees", {
+                credentials: "include"
+            }),
+            fetch("http://127.0.0.1:8000/departments", {
+                credentials: "include"
+            })
+        ]);
+
+        if (!employeesResponse.ok) {
+            const data = await employeesResponse.json();
+            throw new Error(data.detail || "تعذر تحميل الموظفين");
+        }
+
+        if (!departmentsResponse.ok) {
+            const data = await departmentsResponse.json();
+            throw new Error(data.detail || "تعذر تحميل الأقسام");
+        }
+
+        const employees = await employeesResponse.json();
+        const departments = await departmentsResponse.json();
+
+        const employeeSelect =
+            document.getElementById("transferEmployee");
+
+        const departmentSelect =
+            document.getElementById("transferDepartment");
+
+        employeeSelect.innerHTML =
+            '<option value="">اختر الموظف...</option>';
+
+        employees.forEach(employee => {
+            employeeSelect.innerHTML += `
+                <option value="${employee.id}">
+                    ${employee.name} - ${employee.employee_number}
+                </option>
+            `;
+        });
+
+        if (employees.length === 0) {
+            employeeSelect.innerHTML =
+                '<option value="">لا يوجد موظفون في قسمك</option>';
+        }
+
+        departmentSelect.innerHTML =
+            '<option value="">اختر القسم الجديد...</option>';
+
+        departments.forEach(department => {
+            departmentSelect.innerHTML += `
+                <option value="${department.id}">
+                    ${department.department_name}
+                </option>
+            `;
+        });
+
+        if (departments.length === 0) {
+            departmentSelect.innerHTML =
+                '<option value="">لا توجد أقسام متاحة</option>';
+        }
+
+    } catch (error) {
+        console.error(error);
+
+        document.getElementById("errorText").innerText =
+            error.message;
+
+        document.getElementById("transferEmployee").innerHTML =
+            '<option value="">تعذر تحميل الموظفين</option>';
+
+        document.getElementById("transferDepartment").innerHTML =
+            '<option value="">تعذر تحميل الأقسام</option>';
+    }
+}
+async function updatePendingText() {
+
+    const departmentId = localStorage.getItem("department_id");
+
+    if (!departmentId) return;
+
+    try {
+        const response = await fetch(
+            `/transfer-requests/pending/${departmentId}`
+        );
+
+        if (!response.ok) return;
+
+        const requests = await response.json();
+
+        const pendingText = document.getElementById("pendingText");
+
+        if (!pendingText) return;
+
+        if (requests.length > 0) {
+            pendingText.innerText =
+                `يوجد ${requests.length} طلب بانتظار الموافقة`;
+        } else {
+            pendingText.innerText =
+                "لا يوجد طلب بانتظار الموافقة";
+        }
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+async function showPendingRequests() {
+
+    const departmentId = localStorage.getItem("department_id");
+
+    if (!departmentId) {
+        alert("تعذر معرفة قسم الأدمن");
+        return;
+    }
+
+    try {
+        const response = await fetch(
+            `/transfer-requests/pending/${departmentId}`
+        );
+
+        const requests = await response.json();
+
+        if (!response.ok) {
+            alert("حدث خطأ في تحميل الطلبات");
+            return;
+        }
+
+        const pendingText = document.getElementById("pendingText");
+
+if (requests.length === 0) {
+    pendingText.innerText = "لا يوجد طلب بانتظار الموافقة";
+    alert("لا توجد طلبات تحتاج موافقة");
+    return;
+} else {
+    pendingText.innerText =
+        `يوجد ${requests.length} طلب بانتظار الموافقة`;
+}
+        let html = `
+            <h2>طلبات تحتاج موافقة</h2>
+
+            <table>
+                <tr>
+                    <th>الموظف</th>
+                    <th>من قسم</th>
+                    <th>إلى قسم</th>
+                    <th>الحالة</th>
+                </tr>
+        `;
+
+        requests.forEach(request => {
+            html += `
+                <tr>
+                    <td>${request.employee_name}</td>
+                    <td>${request.from_department}</td>
+                    <td>${request.to_department}</td>
+                  <td>
+    <button class="approve-btn" onclick="approveTransfer(${request.id})">
+        <i class="fa-solid fa-check"></i>
+    </button>
+
+    <button class="reject-btn" onclick="rejectTransfer(${request.id})">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+</td>
+                </tr>
+            `;
+        });
+
+        html += `
+            </table>
+
+            <button onclick="showTransferPage()">
+                رجوع
+            </button>
+        `;
+
+        document.getElementById("content").innerHTML = html;
+
+    } catch (error) {
+        console.error(error);
+        alert("تعذر تحميل الطلبات");
+    }
+}
+async function approveTransfer(requestId) {
+    try {
+        const response = await fetch(`/transfer-requests/${requestId}/approve`, {
+            method: "PUT"
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            alert(data.detail || "حدث خطأ أثناء قبول الطلب");
+            return;
+        }
+
+        alert("تم قبول طلب النقل بنجاح");
+
+        // تحديث الجدول بعد القبول
+        showTransferPage();
+
+    } catch (error) {
+        console.error(error);
+        alert("تعذر الاتصال بالسيرفر");
+    }
+}
+
+
+async function rejectTransfer(requestId) {
+    try {
+        const response = await fetch(`/transfer-requests/${requestId}/reject`, {
+            method: "PUT"
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            alert(data.detail || "حدث خطأ أثناء رفض الطلب");
+            return;
+        }
+
+        alert("تم رفض طلب النقل");
+
+        // تحديث الجدول بعد الرفض
+       showTransferPage();
+    } catch (error) {
+        console.error(error);
+        alert("تعذر الاتصال بالسيرفر");
+    }
+}
+async function sendTransferRequest() {
+
+    const employeeId =
+        document.getElementById("transferEmployee").value;
+
+    const departmentId =
+        document.getElementById("transferDepartment").value;
+
+    if (employeeId === "") {
+        alert("اختاري الموظف");
+        return;
+    }
+
+    if (departmentId === "") {
+        alert("اختاري القسم الجديد");
+        return;
+    }
+
+    try {
+
+        const response = await fetch("/transfer-requests", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                employee_id: Number(employeeId),
+                to_department_id: Number(departmentId),
+
+                // مؤقتاً للتجربة
+                requested_by: 1
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            alert(data.detail || "حدث خطأ أثناء إرسال الطلب");
+            return;
+        }
+
+        alert("تم إرسال طلب النقل بنجاح");
+
+        document.getElementById("transferEmployee").value = "";
+        document.getElementById("transferDepartment").value = "";
+
+    } catch (error) {
+
+        console.error(error);
+        alert("تعذر الاتصال بالسيرفر");
+    }
+}
+function logout() {
+    alert("تم الضغط على تسجيل الخروج");
+    window.location.href = "/";
+}
+</script>
+</body>
+</html>

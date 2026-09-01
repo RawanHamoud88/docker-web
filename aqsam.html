@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>الأقسام</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial;
+    background-color:#eef7ff;
+}
+
+/* العنوان الرئيسي */
+.header{
+    text-align:center;
+    font-size:28px;
+    font-weight:bold;
+    padding:20px;
+    border-bottom:1px solid #cfcfcf;
+}
+
+/* تسجيل الخروج */
+.logout{
+    position:absolute;
+    top:20px;
+    left:20px;
+}
+
+.logout button{
+    background-color:#d9ecff;
+    border:1px solid #b0cfe6;
+    padding:10px 20px;
+    cursor:pointer;
+}
+
+/* القائمة الجانبية */
+.sidebar{
+    position:fixed;
+    right:0;
+    top:0;
+    width:150px;
+    height:100%;
+    background-color:#d9ecff;
+    border-left:1px solid #c0d8ea;
+}
+
+.sidebar a{
+    display:block;
+    text-decoration:none;
+    color:black;
+    text-align:center;
+    padding:25px 0;
+    font-size:20px;
+}
+
+.sidebar a:hover{
+    background-color:#c7e3f7;
+}
+
+/* المحتوى */
+.content{
+    text-align:center;
+    margin-top:120px;
+    margin-right:150px;
+}
+
+.content button{
+    width:180px;
+    height:50px;
+    font-size:18px;
+    background-color:#d9ecff;
+    border:1px solid #b0cfe6;
+    cursor:pointer;
+    margin:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    الرواتب الإلكترونية
+</div>
+
+<div class="logout">
+    <button>تسجيل الخروج</button>
+</div>
+
+<div class="sidebar">
+
+    <a href="aqsam.html">الأقسام</a>
+
+    <a href="employees.html">الموظفين</a>
+
+</div>
+
+<div class="content">
+
+    <button>عرض الأقسام</button>
+
+    <br>
+
+    <button>إضافة قسم</button>
+
+</div>
+
+</body>
+</html>
